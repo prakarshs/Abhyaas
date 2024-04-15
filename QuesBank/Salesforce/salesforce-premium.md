@@ -110,7 +110,7 @@ public:
  */
 ```
 
-## Meeting Room II
+## Meeting Rooms II
 ![alt text](/QuesBank/Salesforce/images/image2a.png)
 
 Solution :
