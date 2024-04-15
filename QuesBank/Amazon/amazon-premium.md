@@ -163,6 +163,47 @@ public:
 };
 ```
 
+## Count The Number Of K Big Indices
+![alt text](/QuesBank/Amazon/images/image6a.png)
+
+Solution :
+
+```
+# Like K-th Largest, which can be solved by priority queue. This one is similar, we can maintain two priority queue with size k to check every number.
+
+class Solution {
+public:
+    int kBigIndices(vector<int>& nums, int k) {
+        int n = nums.size();
+        int retval = 0;
+        priority_queue<int> left, right;
+        vector<bool> left_good(n, false);
+        for(int i=0;i<k;i++) {
+            left.push(nums[i]);
+            right.push(nums[n-1-i]);
+        }
+        for (int i=k;i<n-k;i++) {
+            if (nums[i]>left.top()) {
+                left_good[i] = true;
+            } else {
+                left.pop();
+                left.push(nums[i]);
+            }
+        }
+        for (int i=n-k-1;i>=k;i--) {
+            if (nums[i]>right.top() && left_good[i]) {
+                retval += 1;
+            } else {
+                right.pop();
+                right.push(nums[i]);
+            }
+        }
+        return retval;
+    }
+};
+```
+
+
 
 
 
