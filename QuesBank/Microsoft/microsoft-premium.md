@@ -136,4 +136,60 @@ public:
 };
 ```
 
+## Convert BST To Sorted Double LL
+![alt text](/QuesBank/Microsoft/images/image6a.png)
+![alt text](/QuesBank/Microsoft/images/image6b.png)
+
+Solution : Leverage inorder traversal to get the increasing order of nodes.
+```
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* left;
+    Node* right;
+
+    Node() {}
+
+    Node(int _val) {
+        val = _val;
+        left = NULL;
+        right = NULL;
+    }
+
+    Node(int _val, Node* _left, Node* _right) {
+        val = _val;
+        left = _left;
+        right = _right;
+    }
+};
+*/
+
+class Solution {
+    vector<Node*> v;
+    void helper(Node* root){
+        if(root==nullptr) return;
+        helper(root->left);
+        v.emplace_back(root);
+        helper(root->right);
+    }
+public:
+    Node* treeToDoublyList(Node* root) {
+        if(root==nullptr) return root;
+        helper(root);
+        for(int i=0;i+1<v.size();i++){
+            v[i]->right=v[i+1];
+            v[i+1]->left=v[i];
+        }
+        v.back()->right=v.front();
+        v.front()->left=v.back();
+        return v.front();
+    }
+};
+```
+
+
+
+
 
