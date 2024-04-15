@@ -60,5 +60,54 @@ private:
     vector<long> debt; // all non-zero debts
 ```
 
+## Change The Root Of The Binary Tree
+![alt text](/QuesBank/Microsoft/images/image3a.png)
+![alt text](/QuesBank/Microsoft/images/image3b.png)
+
+Solution :
+
+```
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* left;
+    Node* right;
+    Node* parent;
+};
+*/
+
+class Solution {
+public:
+    Node* flipBinaryTree(Node* root, Node * leaf) {
+
+        Node* rt = leaf;
+		Node* prev = NULL;
+		while (true) {
+ 			Node* pnode = rt->parent;
+			rt->parent = prev;
+
+			prev = rt;
+            
+            if (pnode == NULL) break;
+
+            // update left or right of current / rt  only if you have a parent. Set left to the parent node / pnode
+
+            if (rt->left != NULL) {
+                rt->right = rt->left;
+            }
+			rt->left = pnode; // left child is parent
+            
+            if (pnode->left == rt) pnode->left = NULL;
+            else pnode->right = NULL;
+			rt = pnode;
+		}
+		return leaf;
+        
+    }
+};
+```
+
 
 
