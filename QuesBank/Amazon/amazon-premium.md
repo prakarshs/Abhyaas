@@ -107,5 +107,37 @@ public:
 };
 ```
 
+## Maximum Of Number Of Books You Can Take
+![alt text](/QuesBank/Amazon/images/image4a.png)
+![alt text](/QuesBank/Amazon/images/image4b.png)
+
+Solution :
+
+```
+class Solution {
+public:
+    long long maximumBooks(vector<int>& books) {
+        long long max{}, curr{};
+        stack<int> ms;
+        vector<long long> dp(books.size());
+
+        auto sum = [](long long n) {
+            return n <= 0 ? 0 : (n * (n + 1)) / 2;
+        };
+
+        for(int i = 0; i < books.size(); i++) {
+            while(!ms.empty() and books[ms.top()] >= books[i] - (i - ms.top())) ms.pop();
+
+            if(ms.empty()) dp[i] = sum(books[i]) - sum(books[i] - i - 1);
+            else dp[i] = dp[ms.top()] + sum(books[i]) - sum(books[i] - (i - ms.top()));
+
+            max = std::max(max, dp[i]);
+            ms.push(i);
+        }
+        return max;        
+    }
+};
+```
+
 
 
