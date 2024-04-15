@@ -205,3 +205,40 @@ public:
 };
 ```
 
+## Nested List Weight Sum
+![alt text](/QuesBank/Salesforce/images/image4a.png)
+![alt text](/QuesBank/Salesforce/images/image4b.png)
+
+Solution :
+
+###### DFS
+```
+int depthSum(vector<NestedInteger>& nestedList, int depth = 1) {
+	int res = 0;
+	for(auto &n : nestedList) {
+		if(n.isInteger()) res += depth * n.getInteger();
+		else res += depthSum(n.getList(), depth + 1);
+	}
+	return res;
+}
+```
+###### BFS
+```
+int depthSum(vector<NestedInteger>& nestedList) {
+	int res = 0, depth = 1;
+	queue<NestedInteger> q;
+	for(auto &n : nestedList) q.push(n);
+	while(q.size()) {
+		int sz = q.size();
+		while(sz--) {
+			NestedInteger n = q.front();
+			q.pop();
+			if(n.isInteger()) res += depth * n.getInteger();
+			else for(NestedInteger m : n.getList()) q.push(m);
+		}
+		depth++;
+	}
+	return res;
+}
+```
+
