@@ -139,5 +139,28 @@ public:
 };
 ```
 
+## Number Of Valid Subarrays
+![alt text](/QuesBank/Amazon/images/image5a.png)
+
+Solution :
+![alt text](/QuesBank/Amazon/images/image5b.png)
+```
+class Solution {
+public:
+    int validSubarrays(vector<int>& nums) {
+        int ans = 0, stack_ptr = 0;
+        for (int num : nums) {
+            while (stack_ptr > 0 && num < nums[stack_ptr - 1]) {
+                stack_ptr--;
+            }
+            nums[stack_ptr++] = num;
+            ans += stack_ptr;
+        }
+        return ans;
+    }
+};
+```
+
+
 
 
