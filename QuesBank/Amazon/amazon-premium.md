@@ -203,6 +203,116 @@ public:
 };
 ```
 
+## Design Search Autocomplete
+![alt text](/QuesBank/Amazon/images/image7a.png)
+![alt text](/QuesBank/Amazon/images/image7b.png)
+![alt text](/QuesBank/Amazon/images/image7c.png)
+
+Solution :
+
+```
+class AutocompleteSystem {
+public:
+
+    struct TrieNode{
+        unordered_map<char, TrieNode*> next;
+        bool isEnd = false;
+        int count = 0;
+        string word = "";
+    };
+
+   struct comp{
+        bool operator()(const pair<int, string>& a, const pair<int, string>& b)     {
+            if(a.first == b.first) return a.second < b.second;
+            return a.first > b.first;
+        }
+    };
+
+    priority_queue<pair<int, string>, vector<pair<int, string>>, comp> pq;
+
+    TrieNode *root;
+    string prefix = "";
+
+    void insert(const std::string& sentence, int times = 1) {
+        auto* node = root;
+        for (const auto& c : sentence) {
+            if (!node->next.count(c)) {
+                node->next[c] = new TrieNode();
+            }
+            node = node->next[c];
+        }
+        node->count += times;
+        node->isEnd = true;
+        node->word = sentence;
+    }
+
+    AutocompleteSystem(vector<string>& sentences, vector<int>& times) {
+    
+        root = new TrieNode();
+        for(int i=0;i<sentences.size();i++){
+            insert(sentences[i], times[i]);
+        }
+        TrieNode *cur = root;
+    }
+
+
+    void dfs(TrieNode* cur){
+
+        if(cur->isEnd){
+            pq.push({cur->count, cur->word});
+            if(pq.size() > 3){
+                pq.pop();
+            }
+        }
+        for(auto node : cur->next){
+            dfs(node.second);
+        }
+    }
+
+    vector<string> search(string prefix){
+
+        TrieNode *cur = root;
+
+        for(auto ch : prefix){
+            if(cur->next.find(ch) == cur->next.end()){
+                return {};
+            }
+            cur = cur->next[ch];
+        }
+
+        dfs(cur);
+
+        vector<string> ans;
+        while(!pq.empty()){
+            ans.push_back(pq.top().second);
+            pq.pop();
+        }
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+    
+    vector<string> input(char c) {
+
+        if(c == '#'){
+            insert(prefix, 1);
+            prefix = "";
+            return {};
+        }
+
+        prefix += c;
+        return search(prefix);
+    }
+};
+
+/**
+ * Your AutocompleteSystem object will be instantiated and called as such:
+ * AutocompleteSystem* obj = new AutocompleteSystem(sentences, times);
+ * vector<string> param_1 = obj->input(c);
+ */
+```
+
+
+
 
 
 
