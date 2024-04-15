@@ -111,5 +111,29 @@ public:
 
 ## Meeting Rooms II (Salesforce Me Hai)
 
+## Find The Celebrity
+![alt text](/QuesBank/Microsoft/images/image5a.png)
+![alt text](/QuesBank/Microsoft/images/image5b.png)
+
+Solution : This solution is based on fact that if celebrity is there, everyone knows them, so ask from 0 to n if they know someone, also keep in mind that if they know someone, they can't be celebrity themselves. If there is a celebrity, candidate will stop at someone who doesn't know anyone from (candidate+1 to n-1), then we just have to check that candidate shouldn't know anyone from (0 to candidate-1) and everyone from (candidate+1 to n-1) should know candidate.
+```
+class Solution {
+public:
+    int findCelebrity(int n) {
+        vector<int> possibleCelebs;
+        int candidate = 0;
+        for(int i=1; i<n; i++){
+            if(knows(candidate, i)) candidate = i;
+        }
+        
+        //Check if candidate found knows anyone or anyone who doesn't know candidate - If any of this is true, the candidate is not a celeb.
+        for(int i=0; i<n; i++){
+            if(candidate == i) continue;
+            if(knows(candidate, i) || !knows(i, candidate)) return -1;
+        }
+        return candidate;
+    }
+};
+```
 
 
