@@ -111,5 +111,30 @@ public:
 ```
 
 ## Meeting Room II
-![alt text](image2.png)
+![alt text](/QuesBank/Salesforce/images/image2a.png)
+
+Solution :
+
+```
+class Solution {
+public:
+    int minMeetingRooms(vector<vector<int>>& intervals) {
+        map<int, int> mp;
+
+        pair<int, int> pair1 = {1, 2};
+        
+        for (int i=0; i<intervals.size(); i++) {
+            mp[intervals[i][0]]++;
+            mp[intervals[i][1]]--;
+        }
+
+        int count = 0, maxCount = 0;
+        for (auto it:mp) {
+            count += it.second;
+            if (count > maxCount) maxCount = count;
+        }
+        return maxCount;
+    }
+};
+```
 
