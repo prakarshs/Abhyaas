@@ -75,6 +75,7 @@ public:
 ![alt text](/QuesBank/Amazon/images/image3c.png)
 
 Solution :
+
 ![alt text](/QuesBank/Amazon/images/image3d.png)
 
 ```
@@ -143,6 +144,7 @@ public:
 ![alt text](/QuesBank/Amazon/images/image5a.png)
 
 Solution :
+
 ![alt text](/QuesBank/Amazon/images/image5b.png)
 ```
 class Solution {
