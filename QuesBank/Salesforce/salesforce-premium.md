@@ -242,3 +242,28 @@ int depthSum(vector<NestedInteger>& nestedList) {
 }
 ```
 
+## Check If Number Is Majority In Sorted Array
+![alt text](/QuesBank/Salesforce/images/image5a.png)
+
+Solutions:
+
+```
+class Solution {
+public:
+    bool isMajorityElement(vector<int>& nums, int target) {
+        const size_t MAJORITY_COUNT = nums.size() / 2;
+        size_t count = 0;
+
+        for (const auto num : nums) {
+            if (num == target) {
+                ++count;
+            }
+        }
+
+        return count > MAJORITY_COUNT ? true : false;
+        
+    }
+};
+```
+
+
