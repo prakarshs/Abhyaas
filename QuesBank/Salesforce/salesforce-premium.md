@@ -1,7 +1,7 @@
 ## Design In Memory File System
-![design-im-fs](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
+![design-im-fs](/QuesBank/Salesforce/images/image1a.png)
+![alt text](/QuesBank/Salesforce/images/image1b.png)
+![alt text](/QuesBank/Salesforce/images/image1c.png)
 
 Solution :
 
@@ -110,4 +110,6 @@ public:
  */
 ```
 
-## 
+## Meeting Room II
+![alt text](image2.png)
+
