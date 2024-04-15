@@ -69,3 +69,43 @@ public:
 
 ```
 
+## Minimum Number Of Keypresses
+![alt text](/QuesBank/Amazon/images/image3a.png)
+![alt text](/QuesBank/Amazon/images/image3b.png)
+![alt text](/QuesBank/Amazon/images/image3c.png)
+
+Solution :
+![alt text](/QuesBank/Amazon/images/image3d.png)
+
+```
+class Solution {
+public:
+    int minimumKeypresses(string s) {
+        vector<int> counts(26,0);
+        for(char &x: s) counts[x - 'a']++;
+        vector<vector<int>> p;
+        for(int i = 0; i < 26; i++) {
+            p.push_back({counts[i],i});
+        }
+        sort(p.begin(),p.end());
+        reverse(p.begin(),p.end());
+
+        unordered_map<char,int> pos;
+        for(int i =0; i < 26; i++) {
+            pos[p[i][1]] = i;
+        }
+        int count = 0;
+        for(char &x : s){
+            int loc = pos[x - 'a'];
+            if(loc <= 8)count+=1;
+            else if(loc >= 9 and loc <= 17)count +=2;
+            else if(loc >= 18)count+=3;
+            
+        }
+        return count;
+    }
+};
+```
+
+
+
