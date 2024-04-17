@@ -55,3 +55,54 @@ public:
 };
 ```
 
+## [Design A Text Editor](https://leetcode.com/problems/design-a-text-editor/description/)
+
+Solution : <br>
+The logic is simple, leftText, rightText naam ke variable rakho, imaginary cursor inke beech me rahega.
+
+```
+class TextEditor {
+public:
+
+    string ltext = "", rtext = "";
+    TextEditor() {
+        
+    }
+    
+    void addText(string text) {
+        ltext.append(text);
+    }
+    
+    int deleteText(int k) {
+        k = min(k,(int)ltext.size());
+        ltext.resize(ltext.size() - k);
+        return k;
+    }
+    
+    string cursorLeft(int k) {
+        while(k>0 && !ltext.empty()){
+
+            rtext.push_back(ltext.back());
+
+            ltext.pop_back(); k--;
+        }
+
+        return ltext.size() >= 10 ? ltext.substr(ltext.size() - 10, 10) : ltext;
+        
+    }
+    
+    string cursorRight(int k) {
+        while(k>0 && !rtext.empty()){
+            ltext.push_back(rtext.back());
+
+            rtext.pop_back(); k--;
+        }
+    
+        return ltext.size() >= 10 ? ltext.substr(ltext.size() - 10, 10) : ltext;
+        
+    }
+};
+```
+
+
+
