@@ -142,6 +142,49 @@ public:
 };
 ```
 
+> Next Question Karne se pehle tree ko thoda jaan lo, toh agle 3 4 sawal is based on trees/bst.
+
+### [Lowest Common Ansector in Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/)
+
+Solution : <br>
+[Tech Dose Ka recursion explanation dekho](https://www.youtube.com/watch?v=KobQcxdaZKY)
+```
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+
+        if(!root || root == p || root == q) return root;
+
+        auto l = lowestCommonAncestor(root->left, p,q); // left dauda do
+        auto r = lowestCommonAncestor(root->right, p,q); // right dauda do
+
+        return l && r ? root : !l && r ? r : l && !r ? l : NULL; 
+        
+        // agar l aur r dono exist karte toh root return; agar dono me se koi ek toh wo return, agar koi nahi toh NULL
+        
+    }
+};
+```
+
+
+## [Smallest Subtree With All Deepest Nodes](https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/)
+
+Solution : Similar to problem
+1123. Lowest Common Ancestor of Deepest Leaves.
+
+```
+```
+
+
 
 
 
