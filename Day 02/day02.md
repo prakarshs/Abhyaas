@@ -144,6 +144,9 @@ public:
 
 > Next Question Karne se pehle tree ko thoda jaan lo, toh agle 3 4 sawal is based on trees/bst.
 
+
+[Tree Traversals Dekhlo DFS- In/Pre/Post, BFS](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)
+
 ### [Lowest Common Ansector in Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/)
 
 Solution : <br>
