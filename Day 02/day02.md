@@ -175,6 +175,35 @@ public:
 };
 ```
 
+### [Lowest Common Ansector in Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/)
+
+Solution : <br>
+Intuition wahi hai, bas since ye bst; left wale humesha root se chhote. right wale humesha root se bade. Toh agar dono value root se chhoti left me daudao; agar dono value badi toh right me. ek choti ek badi toh obv root ans hai. Jab cant say dono left ya dono roght toh root ans. Edge case is obv root bull
+
+```
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(!root)return NULL;
+        if(p->val < root->val && root->val < q->val)return root;
+        if(p->val < root->val && q->val < root->val)return lowestCommonAncestor(root->left,p,q);
+        if(p->val > root->val && q->val > root->val)return lowestCommonAncestor(root->right,p,q);
+        return root;
+    }
+};
+```
+
+
 
 ## [Smallest Subtree With All Deepest Nodes](https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/)
 
